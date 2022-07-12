@@ -2,9 +2,8 @@ package com.bridgelabz;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class JDBCEmpPayRollPrograms {
 
@@ -12,11 +11,11 @@ public class JDBCEmpPayRollPrograms {
 		Connection connection = null;
 
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payrollService", "root", "Arun@12345");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payrollservice", "root", "Arun@12345");
 
-			Statement stmt = connection.createStatement();
+			PreparedStatement pStmt = connection.prepareStatement("update employeepayroll set salary=5000 where id=4;");
 
-			int affectedRows = stmt.executeUpdate("update employeepayroll set salary=300000000 where id=5;");
+			int affectedRows = pStmt.executeUpdate("update employeepayroll set salary=700000 where id=5;");
 
 			System.out.println("affectedRows :=" + affectedRows);
 
