@@ -12,20 +12,25 @@ public class JDBCEmpPayRollPrograms {
 		Connection connection = null;
 
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payrollservice", "root",
-					"Arun@12345");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payrollService", "root", "12345");
 
 			Statement stmt = connection.createStatement();
 
-			stmt.execute("insert into employeepayroll value(15,'Karan','200000','1996-01-01','M','Nagpur','Store','10k','2k','10','20','30')");
+			ResultSet result = stmt.executeQuery("select * from payrollService;");
+
+			while (result.next()) {
+				System.out.println(result.getInt(1) + "    " + result.getString(2) + "   " + result.getString(3) + "   "
+						+ result.getString(4) + "   " + result.getString(5));
+			}
 
 		} catch (SQLException e) {
-
+			
 			System.out.println("Unable to connect to DB...");
-
+		
 		} finally {
-
+		
 			connection.close();
+		
 		}
 
 	}
