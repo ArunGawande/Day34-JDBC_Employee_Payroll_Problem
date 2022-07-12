@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class JDBCEmpPayRollPrograms {
 
@@ -13,12 +15,15 @@ public class JDBCEmpPayRollPrograms {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payrollservice", "root", "Arun@12345");
 
-			PreparedStatement pStmt = connection.prepareStatement("update employeepayroll set salary=5000 where id=4;");
+			Statement stmt = connection.createStatement();
 
-			int affectedRows = pStmt.executeUpdate("update employeepayroll set salary=700000 where id=5;");
+			ResultSet result = stmt.executeQuery("select * from employeepayroll;");
 
-			System.out.println("affectedRows :=" + affectedRows);
+			while (result.next()) {
+				System.out.println(result.getInt(1) + "    " + result.getString(2) + "   " + result.getString(3) + "   "
+						+ result.getString(4) + "   " + result.getString(5));
 
+			}
 		} catch (SQLException e) {
 
 			System.out.println("Unable to connect to DB...");
@@ -28,7 +33,5 @@ public class JDBCEmpPayRollPrograms {
 			connection.close();
 
 		}
-
 	}
-
 }
