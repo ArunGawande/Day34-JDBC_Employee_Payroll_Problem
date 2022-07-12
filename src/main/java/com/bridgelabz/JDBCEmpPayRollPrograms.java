@@ -16,7 +16,7 @@ public class JDBCEmpPayRollPrograms {
 
 			Statement stmt = connection.createStatement();
 
-			int affectedRows = stmt.executeUpdate("update employeePayroll set salary=300000000 where id=4;");
+			int affectedRows = stmt.executeUpdate("update employeepayroll set salary=300000000 where id=5;");
 
 			System.out.println("affectedRows :=" + affectedRows);
 
